@@ -1,3 +1,4 @@
+
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -33,5 +34,9 @@
  */
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+
+/* Modo oscuro controlado mediante un botón */
+@import "@ionic/angular/css/palettes/dark.class.css";
+
+/* Desactivamos el modo oscuro automático del sistema */
+/* @import "@ionic/angular/css/palettes/dark.system.css"; */

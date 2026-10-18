@@ -7,11 +7,21 @@
 
 <ion-content class="ion-padding">
 
+  <!-- Punto 7: modo oscuro -->
+  <div class="acciones-superiores">
+    <ion-button fill="outline" (click)="cambiarModoOscuro()">
+      @if (modoOscuro()) {
+        Modo claro
+      } @else {
+        Modo oscuro
+      }
+    </ion-button>
+  </div>
+
   <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
 
     <ion-list lines="full">
 
-      <!-- Nombre completo -->
       <ion-item>
         <ion-input
           label="Nombre completo"
@@ -22,7 +32,6 @@
         </ion-input>
       </ion-item>
 
-      <!-- Correo electrónico -->
       <ion-item>
         <ion-input
           label="Correo electrónico"
@@ -34,7 +43,6 @@
         </ion-input>
       </ion-item>
 
-      <!-- Contraseña -->
       <ion-item>
         <ion-input
           label="Contraseña"
@@ -45,7 +53,6 @@
         </ion-input>
       </ion-item>
 
-      <!-- Fecha de nacimiento -->
       <ion-item>
         <ion-input
           label="Fecha de nacimiento"
@@ -53,15 +60,13 @@
           type="date"
           formControlName="fechaNacimiento"
           [max]="fechaMaxima"
-          errorText="La fecha es obligatoria y no puede ser posterior a hoy.">
+          errorText="La fecha no puede ser posterior a hoy.">
         </ion-input>
       </ion-item>
 
     </ion-list>
 
-    <!-- Botón para enviar -->
     <div class="ion-padding-top">
-
       <ion-button
         expand="block"
         type="submit"
@@ -74,10 +79,20 @@
         }
 
       </ion-button>
-
     </div>
 
   </form>
 
+  <!-- Punto 8: PDF del último registro -->
+  @if (ultimoRegistro) {
+    <div class="ion-padding-top">
+      <ion-button
+        expand="block"
+        color="success"
+        (click)="descargarPDF()">
+        Descargar PDF
+      </ion-button>
+    </div>
+  }
+
 </ion-content>
-  
