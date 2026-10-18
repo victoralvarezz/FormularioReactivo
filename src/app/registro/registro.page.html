@@ -52,7 +52,8 @@
           labelPlacement="floating"
           type="date"
           formControlName="fechaNacimiento"
-          errorText="La fecha de nacimiento es obligatoria.">
+          [max]="fechaMaxima"
+          errorText="La fecha es obligatoria y no puede ser posterior a hoy.">
         </ion-input>
       </ion-item>
 
@@ -61,23 +62,22 @@
     <!-- Botón para enviar -->
     <div class="ion-padding-top">
 
+      <ion-button
+        expand="block"
+        type="submit"
+        [disabled]="registroForm.invalid || isSubmitting()">
 
-<ion-button
-  expand="block"
-  type="submit"
-  [disabled]="registroForm.invalid || isSubmitting()">
+        @if (isSubmitting()) {
+          <ion-spinner name="crescent"></ion-spinner>
+        } @else {
+          Registrarse
+        }
 
-  @if (isSubmitting()) {
-    <ion-spinner name="crescent"></ion-spinner>
-  } @else {
-    Registrarse
-  }
-
-</ion-button>
-
+      </ion-button>
 
     </div>
 
   </form>
 
 </ion-content>
+  
