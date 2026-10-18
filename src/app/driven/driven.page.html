@@ -1,0 +1,101 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Formulario Template-Driven</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <p>Formulario creado con FormsModule y ngModel.</p>
+
+  <form #formulario="ngForm" (ngSubmit)="enviar(formulario)">
+
+    <ion-list lines="full">
+
+      <!-- Nombre completo -->
+      <ion-item>
+        <ion-input
+          label="Nombre completo"
+          labelPlacement="floating"
+          type="text"
+          name="nombre"
+          [(ngModel)]="usuario.nombre"
+          required
+          minlength="3"
+          errorText="El nombre debe tener al menos 3 caracteres.">
+        </ion-input>
+      </ion-item>
+
+      <!-- Correo -->
+      <ion-item>
+        <ion-input
+          label="Correo electrónico"
+          labelPlacement="floating"
+          type="email"
+          name="email"
+          [(ngModel)]="usuario.email"
+          required
+          email
+          errorText="Introduce un correo válido.">
+        </ion-input>
+      </ion-item>
+
+      <!-- Contraseña -->
+      <ion-item>
+        <ion-input
+          label="Contraseña"
+          labelPlacement="floating"
+          type="password"
+          name="password"
+          [(ngModel)]="usuario.password"
+          required
+          pattern="(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,}"
+          errorText="Mínimo 8 caracteres, letras y números.">
+        </ion-input>
+      </ion-item>
+
+      <!-- Fecha de nacimiento -->
+      <ion-item>
+        <ion-input
+          label="Fecha de nacimiento"
+          labelPlacement="floating"
+          type="date"
+          name="fechaNacimiento"
+          [(ngModel)]="usuario.fechaNacimiento"
+          [max]="fechaMaxima"
+          required
+          errorText="La fecha es obligatoria.">
+        </ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    @if (fechaFutura()) {
+      <p style="color: red;">
+        La fecha de nacimiento no puede ser posterior a hoy.
+      </p>
+    }
+
+    <div class="ion-padding-top">
+      <ion-button
+        expand="block"
+        type="submit"
+        [disabled]="formulario.invalid || fechaFutura()">
+        Enviar formulario
+      </ion-button>
+    </div>
+
+  </form>
+
+  <div class="ion-padding-top">
+    <ion-button
+      expand="block"
+      fill="outline"
+      href="/registro">
+      Volver al formulario reactivo
+    </ion-button>
+  </div>
+
+</ion-content>
+  
